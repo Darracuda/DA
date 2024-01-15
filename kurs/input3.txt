@@ -1,0 +1,26 @@
+10 5
+1
+You have 5 notifications .
+0
+-70% sale on BLACK FRIDAY
+0
+You have won 1000000$ !!!
+1
+Congratulations we won first round !
+0
+Notification that you won 1000000$
+1
+Will you go on shopping during black friday ?
+0
+You can buy a car right now !
+0
+You have -100% sale ! You can get air conditioner for free right now !
+1
+How much is 500$ in rubles ?
+1
+Hi ! We want to buy a car .
+"Is 500$ a lot ?
+How much is 1000000$ in rubles ?
+You got -70% sale on air conditioner !!!
+Our new black car costs about 1000000$ ! We never had a car before . We will buy it next friday .
+Congratulations ! This is notification that you can still get from -70% to -100% sale !!!

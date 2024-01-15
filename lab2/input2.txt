@@ -1,0 +1,9 @@
++ abcd 21
+abcd
+bcde
+! Save /dict
+! Save dict
++ bcde 32
+bcde
+! Load dict
+bcde

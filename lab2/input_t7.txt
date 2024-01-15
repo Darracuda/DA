@@ -1,0 +1,50 @@
++ Paris 2
++ SaintPetersburg 11
++ NewYork 3
++ Chicago 4
++ Berlin 5
++ Osaka 9
++ Stockholm 10
+- SaintPetersburg
++ London 1
++ Melbourne 6
++ Seoul 15
++ Santiago 16
++ Washington 17
++ SanFrancisco 13
++ SaoPaulo 14
++ Mumbai 23
++ Montreal 12
++ Auckland 25
++ Lagos 24
++ Singapore 18
++ Istanbul 20
+- London
++ Shanghai 21
++ Guangzhou 22
++ Barcelona 8
+- Chicago
++ HongKong 7
+- Berlin
+- Melbourne
+- HongKong
+- Barcelona
+- Osaka
+- Stockholm
+- Montreal
+- SanFrancisco
++ Cairo 19
+- SaoPaulo
+- Seoul
+- Santiago
+- Washington
+- Singapore
+- Cairo
+- Istanbul
+- Shanghai
+- Guangzhou
+- Mumbai
+- Lagos
+- Auckland
+- Paris
+- NewYork

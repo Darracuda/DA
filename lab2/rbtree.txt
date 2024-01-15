@@ -1,0 +1,173 @@
+-----------------------------------------------------------------------------------------------
+// x - корень дерева
+// k - ключ
+Tree-Search(x,k)
+ 1 if x = nil || k = key[x]
+ 2      then return x
+ 3 if k < key[x]
+ 4       then return Tree-Search(left[x],k)
+ 5       else return Tree-Search(right[x],k)
+-----------------------------------------------------------------------------------------------
+// x - корень дерева
+// k - ключ
+Iterative-Tree-Search(x,k)
+ 1 while x != nil && k != key[x]
+ 2      do if k < key[x]
+ 3              then x <- left[x]
+ 4              else x <- right[x]
+ 5 return x
+-----------------------------------------------------------------------------------------------
+Tree-Minimum(x)
+ 1 while left[x] != nil
+ 2      do x <- left[x]
+ 3 return x
+-----------------------------------------------------------------------------------------------
+Tree-Maximum(x)
+ 1 while right[x] != nil
+ 2      do x <- right[x]
+ 3 return x
+-----------------------------------------------------------------------------------------------
+Tree-Successor(x)
+ 1 if right[x] != nil
+ 2      then return Tree-Minimum(right[x])
+ 3 y <- p[x]
+ 4 while y != nil && x = right[y]
+ 5      do x <- y
+ 6         y <- p[y]
+ 7 return y
+-----------------------------------------------------------------------------------------------
+Tree-Predecessor(x)
+// симметрична
+-----------------------------------------------------------------------------------------------
+Tree-Insert(T,z)
+ 1 y <- nil
+ 2 x <- root[T ]
+ 3 while x != nil
+ 4      do y <-x
+ 5         if key[z] < key[x]
+ 6              then x <- left[x]
+ 7              else x <- right[x]
+ 8 p[z] <- y
+ 9 if y = nil
+10      then root[T] <- z
+11      else if key[z] < key[y]
+12                then left[y] <- z
+13                else right[y] <- z
+-----------------------------------------------------------------------------------------------
+Tree-Delete(T,z)
+ 1 if left[z] = nil || right[z] = nil
+ 2      then y <- z
+ 3      else y <- Tree-Successor(z)
+ 4 if left[y] != nil
+ 5      then x <- left[y]
+ 6      else x <- right[y]
+ 7 if x != nil
+ 8      then p[x] <- p[y]
+ 9 if p[y] = nil
+10      then root[T] <- x
+11      else if y = left[p[y]]
+12                then left[p[y]] <- x
+13                else right[p[y]] <- x
+14 if y != z
+15      then key[z] <- key[y]
+16           // копируем дополнительные данные из вершины y.
+17 return y
+-----------------------------------------------------------------------------------------------
+Left-Rotate(T,x)
+ 1 y <- right[x] // находим y.
+ 2 right[x] <- left[y] // левое поддерево y становится правым поддеревом x.
+ 3 if left[y] != nil
+ 4      then p[left[y]] <- x
+ 5 p[y] <- p[x] // делаем родителя x родителем  y.
+ 6 if p[x] = nil
+ 7      then root[T] <- y
+ 8      else if x = left[p[x]]
+ 9               then left[p[x]] <- y
+10               else right[p[x]] <- y
+11 left[y] <- x // делаем x левым ребенком y.
+12 p[x] <- y
+-----------------------------------------------------------------------------------------------
+Right-Rotate(T,x)
+аналогична
+
+Right-Rotate(T,x)
+ 1 y <- left[x] // находим y.
+ 2 left[x] <- right[y] // правое поддерево y становится левым поддеревом x.
+ 3 if right[y] != nil
+ 4      then p[right[y]] <- x
+ 5 p[y] <- p[x] // делаем родителя x родителем  y.
+ 6 if p[x] = nil
+ 7      then root[T] <- y
+ 8      else if x = right[p[x]]
+ 9               then right[p[x]] <- y
+10               else left[p[x]] <- y
+11 right[y] <- x // делаем x правым ребенком y.
+12 p[x] <- y
+
+-----------------------------------------------------------------------------------------------
+RB-Insert(T,x)
+ 1 Tree-Insert(T,x)
+ 2 color[x] <- red
+ 3 while x != root[T] && color[p[x]] = red
+ 4      do if p[x] = left[p[p[x]]]
+ 5              then y <- right[p[p[x]]]
+ 6                   if color[y] = red
+ 7                        then color[p[x]] <- black         // Случай 1
+ 8                             color[y] <- black            // Случай 1
+ 9                             color[p[p[x]]] <-red         // Случай 1
+10                             x <- p[p[x]]                 // Случай 1
+11                        else if x = right[p[x]]
+12                                  then x <- p[x]          // Случай 2
+13                                       Left-Rotate(T,x)   // Случай 2
+14                             color[p[x]] <- black         // Случай 3
+15                             color[p[p[x]]] <- red        // Случай 3
+16                             Right-Rotate(T,p[p[x]])      // Случай 3
+17         else 
+                 // аналогичный текст с заменой left <-> right
+18 color[root[T]] <- black
+-----------------------------------------------------------------------------------------------
+RB-Delete(T,z)
+ 1 if left[z] = nil[T] || right[z] = nil[T]
+ 2      then y <- z
+ 3      else y <- Tree-Successor(z)
+ 4 if left[y] != nil[T]
+ 5      then x <- left[y]
+ 6      else x <- right[y]
+ 7 p[x] <- p[y]
+ 8 if p[y] = nil[T]
+ 9      then root[T] <- x
+10      else if y = left[p[y]]
+11                then left[p[y]] <- x
+12                else right[p[y]] <- x
+13 if y != z
+14      then key[z] <- key[y]
+15           // копируем дополнительные данные из вершины y.
+16 if color[y] = black
+17      then RB-Delete-Fixup(T, x)
+18 return y
+-----------------------------------------------------------------------------------------------
+RB-Delete-Fixup(T, x)
+ 1 while x != root[T] && color[x] = black
+ 2      do if x = left[p[x]]
+ 3           then w <- right[p[x]]
+ 4                if color[w] = red
+ 5                     then color[w] <- black            // Случай 1
+ 6                          color[p[x]] <- red           // Случай 1
+ 7                          Left-Rotate(T, p[x])         // Случай 1
+ 8                          w <- right[p[x]]             // Случай 1
+ 9                if color[left[w]] = black && color[right[w]] = black
+10                     then color[w] <- red              // Случай 2
+11                          x <- p[x]                    // Случай 2
+12                else if color[right[w]] = black
+13                          then color[left[w]] <- black // Случай 3
+14                               color[w] <- red         // Случай 3
+15                               Right-Rotate(T, w)      // Случай 3
+16                               w <- right[p[x]]        // Случай 3
+17                     color[w] <- color[p[x]]           // Случай 4
+18                     color[p[x]] <- black              // Случай 4
+19                     color[right[w]] <- black          // Случай 4
+20                     Left-Rotate(T, p[x])              // Случай 4
+21                     x <- root[T]                      // Случай 4
+22         else (симметричный фрагмент с заменой left <-> right)
+23 color[x] <- black
+-----------------------------------------------------------------------------------------------

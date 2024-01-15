@@ -1,0 +1,9 @@
+OK
+OK: 21
+NoSuchWord
+ERROR: Couldn't create file
+OK
+OK
+OK: 32
+OK
+NoSuchWord
